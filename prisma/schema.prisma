@@ -1,0 +1,43 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  votes     Vote[]
+}
+
+model Poll {
+  id        Int      @id @default(autoincrement())
+  title     String
+  options   Option[]
+  votes     Vote[]
+}
+
+model Option {
+  id      Int    @id @default(autoincrement())
+  text    String
+  votes   Int    @default(0)
+  pollId  Int
+  poll    Poll   @relation(fields: [pollId], references: [id])
+}
+
+model Vote {
+  id      Int    @id @default(autoincrement())
+  userId  Int
+  pollId  Int
+  user    User   @relation(fields: [userId], references: [id])
+  poll    Poll   @relation(fields: [pollId], references: [id])
+
+  @@unique([userId, pollId])
+}
