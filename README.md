@@ -111,10 +111,6 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/your-feature-name`).
 5. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License.
-
 ## Acknowledgements
 
 - Special thanks to the developers of Next.js, Tailwind CSS, Prisma, SQLite, and NextAuth for their amazing tools and libraries.
